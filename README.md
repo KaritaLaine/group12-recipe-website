@@ -8,13 +8,13 @@ Sign up, login, recipes page, single recipe details, post and comment/rate.
 
 ### Checklist
 
-[ ] - Website works without errors (2 points)
+[ ] - Website works without errors. (2 points)
 
-[ ] - MVC design pattern is used at least to some degree (2 points)
+[ ] - MVC design pattern is used at least to some degree. (2 points)
 
-[ ] - The website has at least 4 views (2 points)
+[ ] - The website has at least 4 views (sign up, login, recipes page, single recipe details, post and comment/rate.). (2 points)
 
-[ ] - A template engine is used (1 point)
+[ ] - A template engine is used. (1 point)
 
 [ ] - Templates are created so that there is no need to repeat content on the different templates. (2 points)
 
@@ -44,4 +44,4 @@ Sign up, login, recipes page, single recipe details, post and comment/rate.
 
 [ ] - Automated tests are implemented. (2 points)
 
-[ ] - Suggest something else! (2 points)
+[ ] - Use helmet (suggestion for something else) (2 points)
