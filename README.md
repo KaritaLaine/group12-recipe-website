@@ -6,11 +6,11 @@ Group 12’s backend course project: a food recipe website where users can creat
 
 Sign up, login, recipes page, single recipe details, post and comment/rate.
 
-### Checklist
+## Checklist
 
 [ ] - Website works without errors. (2 points)
 
-[ ] - MVC design pattern is used at least to some degree. (2 points)
+[x] - MVC design pattern is used at least to some degree. (2 points)
 
 [ ] - The website has at least 4 views (sign up, login, recipes page, single recipe details, post and comment/rate.). (2 points)
 
