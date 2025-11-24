@@ -18,7 +18,7 @@ app.use(express.static("public"))
 app.use(layouts)
 
 app.get("/", (req, res) => {
-  res.render("recipes/index", { layout: "components/layout" })
+  res.render("recipes/index")
 })
 
 app.listen(port, () => {
