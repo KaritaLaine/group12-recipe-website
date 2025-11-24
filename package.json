@@ -1,0 +1,30 @@
+{
+  "name": "group12-recipe-website",
+  "version": "1.0.0",
+  "description": "Group 12’s backend course project: a food recipe website where users can create an account, log in, post food recipes, comment and rate those.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KaritaLaine/group12-recipe-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/KaritaLaine/group12-recipe-website/issues"
+  },
+  "homepage": "https://github.com/KaritaLaine/group12-recipe-website#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-ejs-layouts": "^2.5.1",
+    "helmet": "^8.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
