@@ -45,6 +45,9 @@ router.get("/", recipeController.showRecipes)
 router.get("/login", usersController.login)
 router.get("/register", usersController.register)
 router.post("/users/create", usersController.create, usersController.redirectView)
+router.get("/recipes/new", recipeController.newRecipeForm)
+router.post("/recipes", recipeController.createRecipe)
+router.get("/recipes/:id", recipeController.showRecipe)
 
 app.use("/", router)
 
