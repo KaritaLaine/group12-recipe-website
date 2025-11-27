@@ -39,9 +39,10 @@ app.use((req, res, next) => {
 
 app.use(layouts)
 
-app.get("/", (req, res) => {
-  res.render("recipes/index")
-})
+app.get("/", recipeController.showRecipes)
+app.get("/recipes/new", recipeController.newRecipeForm)
+app.post("/recipes", recipeController.createRecipe)
+app.get("/recipes/:id", recipeController.showRecipe)
 
 app.get("/login", (req, res) => {
   res.render("users/login")

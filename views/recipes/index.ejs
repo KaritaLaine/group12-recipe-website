@@ -1,7 +1,24 @@
-<!-- Use the layout component -->
 <%- contentFor('body') %>
 
-<!-- All recipes -->
-<div>
-  <h1>Recipes</h1>
-</div>
+  <div>
+    <h1>Recipes</h1>
+
+    <a href="/recipes/new">
+      ➕ Add recipe
+    </a>
+
+    <% if (!recipes || recipes.length===0) { %>
+      <p>No recipes yet. Add your first one!</p>
+      <% } else { %>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;">
+          <% recipes.forEach(r=> { %>
+            <a href="/recipes/<%= r._id %>">
+              <h3>
+                <%= r.title %>
+              </h3>
+              <p>⏱ <%= r.timeToCook %> min</p>
+            </a>
+            <% }) %>
+        </div>
+        <% } %>
+  </div>
