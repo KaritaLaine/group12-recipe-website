@@ -34,7 +34,7 @@ export const usersController = {
     try {
       let userParams = getUserParams(req.body)
       const user = await User.create(userParams)
-      res.locals.redirect = "/users"
+      res.locals.redirect = "/login"
       res.locals.user = user
       next()
     } catch (error) {
