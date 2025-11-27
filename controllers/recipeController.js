@@ -1,4 +1,4 @@
-import { Recipe } from "../models/recipe.js" // adjust path if needed
+import { Recipe } from "../models/recipe.js"
 
 const showRecipes = async (req, res) => {
   try {
@@ -42,6 +42,7 @@ const createRecipe = async (req, res) => {
       timeToCook: Number(timeToCook),
       ingredients: ingredientsArr,
       steps: stepsArr,
+      image: req.file ? req.file.filename : undefined,
     })
 
     res.redirect("/")

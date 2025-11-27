@@ -1,22 +1,26 @@
+<!-- views/recipes/index.ejs -->
 <%- contentFor('body') %>
 
   <div>
     <h1>Recipes</h1>
 
-    <a href="/recipes/new">
-      ➕ Add recipe
-    </a>
+    <a href="/recipes/new">➕ Add recipe</a>
 
     <% if (!recipes || recipes.length===0) { %>
       <p>No recipes yet. Add your first one!</p>
       <% } else { %>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;">
+        <div>
           <% recipes.forEach(r=> { %>
             <a href="/recipes/<%= r._id %>">
-              <h3>
-                <%= r.title %>
-              </h3>
-              <p>⏱ <%= r.timeToCook %> min</p>
+
+              <% if (r.image) { %>
+                <img src="/uploads/<%= r.image %>" alt="<%= r.title %>" />
+                <% } %>
+
+                  <h3>
+                    <%= r.title %>
+                  </h3>
+                  <p>⏱ <%= r.timeToCook %> min</p>
             </a>
             <% }) %>
         </div>

@@ -1,3 +1,4 @@
+<!-- views/recipes/show.ejs -->
 <%- contentFor('body') %>
 
   <div>
@@ -8,25 +9,29 @@
     </h1>
     <p>⏱ <%= recipe.timeToCook %> min</p>
 
-    <% if (recipe.ingredients?.length) { %>
-      <h2>Ingredients</h2>
-      <ul>
-        <% recipe.ingredients.forEach(i=> { %>
-          <li>
-            <%= i %>
-          </li>
-          <% }) %>
-      </ul>
+    <% if (recipe.image) { %>
+      <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.title %>" />
       <% } %>
 
-        <% if (recipe.steps?.length) { %>
-          <h2>Steps</h2>
-          <ol>
-            <% recipe.steps.forEach(s=> { %>
+        <% if (recipe.ingredients?.length) { %>
+          <h2>Ingredients</h2>
+          <ul>
+            <% recipe.ingredients.forEach(i=> { %>
               <li>
-                <%= s %>
+                <%= i %>
               </li>
               <% }) %>
-          </ol>
+          </ul>
           <% } %>
+
+            <% if (recipe.steps?.length) { %>
+              <h2>Steps</h2>
+              <ol>
+                <% recipe.steps.forEach(s=> { %>
+                  <li>
+                    <%= s %>
+                  </li>
+                  <% }) %>
+              </ol>
+              <% } %>
   </div>
