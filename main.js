@@ -1,13 +1,14 @@
 import dotenv from "dotenv"
 import express from "express"
 import layouts from "express-ejs-layouts"
-import { recipeController } from "./controllers/recipeController.js"
 import mongoose from "mongoose"
 import { usersController } from "./controllers/usersController.js"
+import { recipeController } from "./controllers/recipeController.js"
 
 dotenv.config()
 
 const app = express()
+const router = express.Router()
 
 if (!process.env.MONGODB_URI) {
   console.error("MONGODB_URI is not defined in the .env file")
@@ -28,8 +29,10 @@ const port = process.env.PORT || 3000
 app.set("view engine", "ejs")
 app.set("port", port)
 app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
-app.use(express.static("public"))
+
+router.use(express.json())
+router.use(express.static("public"))
+router.use(layouts)
 
 // Get currently open path for highlighting the active link on navbar
 app.use((req, res, next) => {
@@ -37,21 +40,13 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use(layouts)
+// Routes
+router.get("/", recipeController.showRecipes)
+router.get("/login", usersController.login)
+router.get("/register", usersController.register)
+router.post("/users/create", usersController.create, usersController.redirectView)
 
-app.get("/", (req, res) => {
-  res.render("recipes/index")
-})
-
-app.get("/login", (req, res) => {
-  res.render("users/login")
-})
-
-app.get("/register", (req, res) => {
-  res.render("users/register")
-})
-
-app.post("/users/create", usersController.create, usersController.redirectView)
+app.use("/", router)
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`)
