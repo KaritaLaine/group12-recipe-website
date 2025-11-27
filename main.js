@@ -3,6 +3,7 @@ import express from "express"
 import layouts from "express-ejs-layouts"
 import { recipeController } from "./controllers/recipeController.js"
 import mongoose from "mongoose"
+import { usersController } from "./controllers/usersController.js"
 
 dotenv.config()
 
@@ -49,6 +50,8 @@ app.get("/login", (req, res) => {
 app.get("/register", (req, res) => {
   res.render("users/register")
 })
+
+app.post("/users/create", usersController.create, usersController.redirectView)
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`)

@@ -31,14 +31,21 @@ export const usersController = {
   },
 
   create: async (req, res, next) => {
-    let userParams = getUserParams(req.body)
-    const user = await User.create(userParams)
-    res.locals.redirect = "/users"
-    res.locals.user = user
-    next()
+    try {
+      let userParams = getUserParams(req.body)
+      const user = await User.create(userParams)
+      res.locals.redirect = "/login"
+      res.locals.user = user
+      next()
+    } catch (error) {
+      console.log(`Error creating user: ${error.message}`)
+      next(error)
+    }
   },
-  catch(error) {
-    console.log(`Error creating user: ${error.message}`)
-    next(error)
+
+  redirectView: (req, res, next) => {
+    let redirectPath = res.locals.redirect
+    if (redirectPath !== undefined) res.redirect(redirectPath)
+    else next()
   },
 }
