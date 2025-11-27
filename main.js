@@ -55,14 +55,16 @@ const fileFilter = (req, file, cb) => {
 }
 
 const upload = multer({
-  storage,
-  fileFilter,
+  storage: multer.memoryStorage(),
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith("image/")) cb(null, true)
+    else cb(new Error("Only image files allowed"), false)
+  },
 })
 
 app.get("/", recipeController.showRecipes)
 app.get("/recipes/new", recipeController.newRecipeForm)
-app.post("/recipes", upload.single("image"), recipeController.createRecipe)
 app.get("/recipes/:id", recipeController.showRecipe)
 
 app.get("/login", (req, res) => {
@@ -79,8 +81,48 @@ router.get("/login", usersController.login)
 router.get("/register", usersController.register)
 router.post("/users/create", usersController.create, usersController.redirectView)
 router.get("/recipes/new", recipeController.newRecipeForm)
-router.post("/recipes", upload.single("image"), recipeController.createRecipe)
+
+router.post(
+  "/recipes",
+  upload.single("image"),
+  (req, res, next) => {
+    if (!req.file) return next()
+
+    const bucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
+      bucketName: "recipeImages",
+    })
+
+    const ext = path.extname(req.file.originalname)
+    const filename = `${Date.now()}-${Math.round(Math.random() * 1e9)}${ext}`
+
+    const uploadStream = bucket.openUploadStream(filename, {
+      contentType: req.file.mimetype,
+    })
+
+    uploadStream.end(req.file.buffer)
+
+    uploadStream.on("finish", () => {
+      req.gridfsFilename = filename
+      next()
+    })
+
+    uploadStream.on("error", next)
+  },
+  recipeController.createRecipe
+)
+
 router.get("/recipes/:id", recipeController.showRecipe)
+
+router.get("/images/:filename", (req, res) => {
+  const bucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
+    bucketName: "recipeImages",
+  })
+
+  bucket
+    .openDownloadStreamByName(req.params.filename)
+    .on("error", () => res.status(404).send("Image not found"))
+    .pipe(res)
+})
 
 app.use("/", router)
 

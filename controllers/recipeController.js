@@ -42,7 +42,7 @@ const createRecipe = async (req, res) => {
       timeToCook: Number(timeToCook),
       ingredients: ingredientsArr,
       steps: stepsArr,
-      image: req.file ? req.file.filename : undefined,
+      image: req.gridfsFilename || undefined
     })
 
     res.redirect("/")
