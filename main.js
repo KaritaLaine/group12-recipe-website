@@ -1,10 +1,24 @@
 import dotenv from "dotenv"
 import express from "express"
 import layouts from "express-ejs-layouts"
+import mongoose from "mongoose"
 
 dotenv.config()
 
 const app = express()
+
+if (!process.env.MONGODB_URI) {
+  console.error("MONGODB_URI is not defined in the .env file")
+  process.exit(1)
+}
+
+mongoose
+  .connect(process.env.MONGODB_URI, {})
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((error) => {
+    console.error("Error connecting to MongoDB:", error.message)
+    process.exit(1)
+  })
 
 // Get port number from the .env-file or default to 3000
 const port = process.env.PORT || 3000
