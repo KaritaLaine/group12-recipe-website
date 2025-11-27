@@ -59,3 +59,24 @@ footer {
   flex: 1 0 auto;
   margin: 0.5rem 3rem;
 }
+
+/* Button */
+
+.btn {
+  background-color: #3da9fc;
+  color: #fffffe;
+  border-color: transparent;
+  border-radius: 3px;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background-color: #094067;
+  transition: 0.2s;
+}
+
+/* Form */
+
+/* Input */
