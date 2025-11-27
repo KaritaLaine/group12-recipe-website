@@ -29,6 +29,11 @@ header a {
   color: #fffffe;
 }
 
+.active {
+  text-decoration: underline;
+  text-decoration-color: #fffffe95;
+}
+
 .header-content {
   display: flex;
   width: 55%;

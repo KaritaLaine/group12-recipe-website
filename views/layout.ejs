@@ -20,8 +20,13 @@
     <header>
       <!-- TODO: add navbar links here -->
       <div class="header-content">
-        <a href="/"> Recipes </a>
-        <a href="/login"> Login </a>
+        <a href="/" class="<%= activePath === '/' ? 'active' : '' %>">
+          Recipes
+        </a>
+
+        <a href="/login" class="<%= activePath === '/login' ? 'active' : '' %>">
+          Login
+        </a>
       </div>
     </header>
 
