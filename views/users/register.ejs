@@ -1,20 +1,17 @@
 <%- contentFor('body') %>
 
 <div class="form-container">
-  <form action="users/register" class="register-form" method="POST">
+  <form action="/users/create" class="register-form" method="POST">
     <h1>Register</h1>
 
     <label for="inputUserName">Username</label>
-    <input type="userName" name="userName" id="inputUserName" required />
+    <input type="text" name="userName" id="inputUserName" required />
 
     <label for="inputEmail">E-mail</label>
     <input type="email" name="email" id="inputEmail" required />
 
     <label for="inputPassword">Password</label>
     <input type="password" name="password" id="inputPassword" required />
-
-    <label for="inputRePassword">Confirm password</label>
-    <input type="password" name="password" id="inputRePassword" required />
 
     <button type="submit" class="btn">Register</button>
   </form>
