@@ -15,6 +15,12 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(express.static("public"))
 
+// Get currently open path for highlighting the active link on navbar
+app.use((req, res, next) => {
+  res.locals.activePath = req.path
+  next()
+})
+
 app.use(layouts)
 
 app.get("/", (req, res) => {
