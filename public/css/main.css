@@ -1,1 +1,56 @@
-/* TODO: style the website */
+/* Global styling */
+
+html {
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  background-color: #fffffe;
+  color: #094067;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Layout: header, footer, and wrapper */
+
+header {
+  height: 6rem;
+  width: 100%;
+  background-color: #90b4ce;
+}
+
+header a {
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #fffffe;
+}
+
+.header-content {
+  display: flex;
+  width: 55%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+}
+
+footer {
+  height: 6rem;
+  width: 100%;
+  background-color: #90b4ce;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rem;
+  color: #fffffe;
+  font-size: 1.2rem;
+}
+
+.wrapper {
+  flex: 1 0 auto;
+  margin: 0.5rem 3rem;
+}
