@@ -1,7 +1,7 @@
 {
   "name": "group12-recipe-website",
   "version": "1.0.0",
-  "description": "Group 12’s backend course project: a food recipe website where users can create an account, log in, post food recipes, comment and rate those.",
+  "description": "Group 12's backend course project: a food recipe website where users can create an account, log in, post food recipes, comment and rate those.",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

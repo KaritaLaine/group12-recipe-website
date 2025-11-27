@@ -1,6 +1,7 @@
 import dotenv from "dotenv"
 import express from "express"
 import layouts from "express-ejs-layouts"
+import { recipeController } from "./controllers/recipeController.js"
 
 dotenv.config()
 
