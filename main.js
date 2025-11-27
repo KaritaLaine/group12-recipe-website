@@ -50,24 +50,13 @@ const upload = multer({
   },
 })
 
-app.get("/", recipeController.showRecipes)
-app.get("/recipes/new", recipeController.newRecipeForm)
-app.get("/recipes/:id", recipeController.showRecipe)
-
-app.get("/login", (req, res) => {
-  res.render("users/login")
-})
-
-app.get("/register", (req, res) => {
-  res.render("users/register")
-})
-
 // Routes
 router.get("/", recipeController.showRecipes)
 router.get("/login", usersController.login)
 router.get("/register", usersController.register)
 router.post("/users/create", usersController.create, usersController.redirectView)
 router.get("/recipes/new", recipeController.newRecipeForm)
+router.get("/recipes/:id", recipeController.showSingleRecipe)
 
 router.post(
   "/recipes",
@@ -97,8 +86,6 @@ router.post(
   },
   recipeController.createRecipe
 )
-
-router.get("/recipes/:id", recipeController.showRecipe)
 
 router.get("/images/:filename", (req, res) => {
   const bucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {

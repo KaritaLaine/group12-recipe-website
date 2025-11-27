@@ -2,9 +2,11 @@
 <%- contentFor('body') %>
 
   <div>
-    <h1>Recipes</h1>
+    <div class="recipes-header">
+      <h1>Recipes</h1>
 
-    <a href="/recipes/new">➕ Add recipe</a>
+      <button onclick="window.location.href='/recipes/new'" class="btn">+ Add recipe</button>
+    </div>
 
     <% if (!recipes || recipes.length===0) { %>
       <p>No recipes yet. Add your first one!</p>

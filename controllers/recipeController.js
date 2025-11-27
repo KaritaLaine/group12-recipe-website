@@ -10,7 +10,7 @@ const showRecipes = async (req, res) => {
   }
 }
 
-const showRecipe = async (req, res) => {
+const showSingleRecipe = async (req, res) => {
   try {
     const recipe = await Recipe.findById(req.params.id).lean()
     if (!recipe) return res.status(404).send("Recipe not found")
@@ -54,7 +54,7 @@ const createRecipe = async (req, res) => {
 
 export const recipeController = {
   showRecipes,
-  showRecipe,
+  showSingleRecipe,
   newRecipeForm,
   createRecipe,
 }
