@@ -9,20 +9,22 @@
     <% if (!recipes || recipes.length===0) { %>
       <p>No recipes yet. Add your first one!</p>
       <% } else { %>
-        <div>
+        <div class="recipe-container">
           <% recipes.forEach(r=> { %>
-            <a href="/recipes/<%= r._id %>">
+            <div class="recipe-card">
+              <a href="/recipes/<%= r._id %>">
 
-              <% if (r.image) { %>
-                <img src="/images/<%= r.image %>" alt="<%= r.title %>">
-                <% } %>
+                <% if (r.image) { %>
+                  <img src="/images/<%= r.image %>" alt="<%= r.title %>">
+                  <% } %>
 
-                  <h3>
-                    <%= r.title %>
-                  </h3>
-                  <p>⏱ <%= r.timeToCook %> min</p>
-            </a>
-            <% }) %>
+                    <h3>
+                      <%= r.title %>
+                    </h3>
+                    <p>⏱ <%= r.timeToCook %> min</p>
+              </a>
+            </div>
+          <% }) %>
         </div>
         <% } %>
   </div>
