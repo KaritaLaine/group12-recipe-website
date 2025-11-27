@@ -2,7 +2,7 @@ import dotenv from "dotenv"
 import express from "express"
 import layouts from "express-ejs-layouts"
 import mongoose from "mongoose"
-import { usersController } from "./controllers/usersController"
+import { usersController } from "./controllers/usersController.js"
 
 dotenv.config()
 
