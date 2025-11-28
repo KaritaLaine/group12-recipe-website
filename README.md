@@ -44,4 +44,4 @@ Sign up, login, recipes page, single recipe details, post and comment/rate.
 
 [ ] - Automated tests are implemented. (2 points)
 
-[ ] - Use helmet (suggestion for something else) (2 points)
+[ ] - Use helmet and ImageKit cloud service (suggestion for something else) (2 points)
