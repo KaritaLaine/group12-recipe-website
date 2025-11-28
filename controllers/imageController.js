@@ -9,28 +9,6 @@ const imagekit = new ImageKit({
   urlEndpoint: process.env.URL_ENDPOINT
 })
 
-const uploadImage = async (req, res) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ error: "No file uploaded" })
-    }
-
-    const result = await imagekit.upload({
-      file: req.file.buffer,
-      fileName: `${Date.now()}-${req.file.originalname}`,
-      folder: "/uploads",
-    })
-
-    return res.json({
-      url: result.url,
-      fileId: result.fileId
-    })
-  } catch (error) {
-    console.error(error)
-    return res.status(500).json({ error: "Image upload failed" })
-  }
-}
-
 export const getImages = async (req, res) => {
   try {
     const response = await imagekit.listFiles({
@@ -48,6 +26,5 @@ export const getImages = async (req, res) => {
 }
 
 export const imageController = {
-  uploadImage,
   getImages
 }

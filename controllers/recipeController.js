@@ -51,7 +51,7 @@ const createRecipe = async (req, res) => {
 
     if (req.file) {
       const uploadResult = await imagekit.upload({
-        file: req.file.buffer, // multer.memoryStorage gives us a Buffer
+        file: req.file.buffer,
         fileName: `${Date.now()}-${req.file.originalname}`,
         folder: "/uploads",
       })
@@ -63,7 +63,7 @@ const createRecipe = async (req, res) => {
       timeToCook: Number(timeToCook),
       ingredients: ingredientsArr,
       steps: stepsArr,
-      image: imageUrl || undefined, // store full ImageKit URL
+      image: imageUrl || undefined,
     })
 
     res.redirect("/")
@@ -73,9 +73,13 @@ const createRecipe = async (req, res) => {
   }
 }
 
-const addLike = async (req, res) => { }
+const addLike = async (req, res) => {
 
-const addComment = async (req, res) => { }
+}
+
+const addComment = async (req, res) => {
+  
+}
 
 export const recipeController = {
   showRecipes,
