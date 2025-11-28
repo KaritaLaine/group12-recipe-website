@@ -187,6 +187,21 @@ input {
   color: #2c3e50;
 }
 
+.recipe-row {
+  display: grid;
+  align-items: baseline;
+  grid-template-columns: 1fr auto;
+  padding: 8px 0;
+}
+
+.left p,
+.right p {
+  margin: 0;
+}
+.left h3 {
+  margin: 0;
+}
+
 /* Single recipe page */
 
 .single-recipe {

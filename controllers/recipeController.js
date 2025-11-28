@@ -52,6 +52,14 @@ const createRecipe = async (req, res) => {
   }
 }
 
+const addLike = async (req, res) => {
+
+}
+
+const addComment = async (req, res) => {
+  
+}
+
 export const recipeController = {
   showRecipes,
   showSingleRecipe,

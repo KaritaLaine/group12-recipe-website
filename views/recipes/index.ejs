@@ -19,11 +19,18 @@
                 <% if (r.image) { %>
                   <img src="/images/<%= r.image %>" alt="<%= r.title %>">
                   <% } %>
+                    
+                  <div class="recipe-row">
+                    <div class="left">
+                      <h3><%= r.title %></h3>
+                      <p>⏱ <%= r.timeToCook %> min</p>
+                    </div>
 
-                    <h3>
-                      <%= r.title %>
-                    </h3>
-                    <p>⏱ <%= r.timeToCook %> min</p>
+                    <div class="right">
+                      <p>Likes: <%= r.likes %></p>
+                      <p>Comments: <%= r.comments.length %></p>
+                    </div>
+                  </div>
               </a>
             </div>
           <% }) %>
