@@ -11,7 +11,7 @@
       <p>⏱ <%= recipe.timeToCook %> min</p>
 
       <% if (recipe.image) { %>
-        <img src="/images/<%= recipe.image %>" alt="<%= recipe.title %>">
+        <img src="<%= recipe.image %>" alt="<%= recipe.title %>">
         <% } %>
 
           <% if (recipe.ingredients?.length) { %>

@@ -49,7 +49,10 @@ router.post("/users/create", usersController.create, usersController.redirectVie
 router.get("/recipes/new", recipeController.newRecipeForm)
 router.get("/recipes/:id", recipeController.showSingleRecipe)
 router.post("/upload", upload.single("image"), imageController.uploadImage)
+router.post("/recipes", upload.single("image"), recipeController.createRecipe)
 
+// Keep this if you still want a standalone upload API endpoint
+router.post("/upload", upload.single("image"), imageController.uploadImage)
 
 app.use("/", router)
 

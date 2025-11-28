@@ -1,4 +1,14 @@
 import { Recipe } from "../models/recipe.js"
+import ImageKit from "imagekit"
+import dotenv from "dotenv"
+
+dotenv.config()
+
+const imagekit = new ImageKit({
+  publicKey: process.env.IMAGEKIT_PUK,
+  privateKey: process.env.IMAGEKIT_PRK,
+  urlEndpoint: process.env.URL_ENDPOINT,
+})
 
 const showRecipes = async (req, res) => {
   try {
@@ -37,12 +47,23 @@ const createRecipe = async (req, res) => {
       ? steps.split("\n").map(s => s.trim()).filter(Boolean)
       : []
 
+    let imageUrl
+
+    if (req.file) {
+      const uploadResult = await imagekit.upload({
+        file: req.file.buffer, // multer.memoryStorage gives us a Buffer
+        fileName: `${Date.now()}-${req.file.originalname}`,
+        folder: "/uploads",
+      })
+      imageUrl = uploadResult.url
+    }
+
     await Recipe.create({
       title: title.trim(),
       timeToCook: Number(timeToCook),
       ingredients: ingredientsArr,
       steps: stepsArr,
-      image: req.gridfsFilename || undefined
+      image: imageUrl || undefined, // store full ImageKit URL
     })
 
     res.redirect("/")
@@ -52,13 +73,9 @@ const createRecipe = async (req, res) => {
   }
 }
 
-const addLike = async (req, res) => {
+const addLike = async (req, res) => { }
 
-}
-
-const addComment = async (req, res) => {
-  
-}
+const addComment = async (req, res) => { }
 
 export const recipeController = {
   showRecipes,
