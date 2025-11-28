@@ -25,6 +25,7 @@
     "express": "^5.1.0",
     "express-ejs-layouts": "^2.5.1",
     "helmet": "^8.1.0",
+    "imagekit": "^6.0.0",
     "mongoose": "^8.20.1",
     "multer": "^2.0.2"
   },
