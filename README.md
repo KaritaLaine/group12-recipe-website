@@ -12,36 +12,36 @@ Sign up, login, recipes page, single recipe details, post and comment/rate.
 
 [x] - MVC design pattern is used at least to some degree. (2 points)
 
-[ ] - The website has at least 4 views (sign up, login, recipes page, single recipe details, post and comment/rate.). (2 points)
+[x] - The website has at least 4 views (sign up, login, recipes page, single recipe details, post and comment/rate.). (2 points)
 
-[ ] - A template engine is used. (1 point)
+[x] - A template engine is used. (1 point)
 
-[ ] - Templates are created so that there is no need to repeat content on the different templates. (2 points)
+[x] - Templates are created so that there is no need to repeat content on the different templates. (2 points)
 
-[ ] - The web site is styled, usable and looks good. (2 points)
+[x] - The web site is styled, usable and looks good. (2 points)
 
-[ ] - The web site is responsive. (1 point)
+[x] - The web site is responsive. (1 point)
 
-[ ] - The web site follows accessibility best practices. (2 points)
+[x] - The web site follows accessibility best practices. (2 points)
 
-[ ] - The web site uses persistent data storage. (2 points)
+[x] - The web site uses persistent data storage. (2 points)
 
-[ ] - The persistent data storage is both read and written. (2 points)
+[x] - The persistent data storage is both read and written. (2 points)
 
-[ ] - ORM or ODM is used and at least one simple data model is designed and implemented. (1 points)
+[x] - ORM or ODM is used and at least one simple data model is designed and implemented. (1 points)
 
 [ ] - More than 2 data models are designed and implemented. (1 point)
 
-[ ] - Routers are used and they are separated from controllers. (1 point)
+[x] - Routers are used and they are separated from controllers. (1 point)
 
-[ ] - Sessions and cookies are used. (2 points)
+[x] - Sessions and cookies are used. (2 points)
 
-[ ] - A login functionality is implemented. (1 point)
+[x] - A login functionality is implemented. (1 point)
 
-[ ] - Authentication and authorization is taken care of. (2 points)
+[x] - Authentication and authorization is taken care of. (2 points)
 
-[ ] - The source code is modularized and easy to read and maintain. (2 points)
+[x] - The source code is modularized and easy to read and maintain. (2 points)
 
 [ ] - Automated tests are implemented. (2 points)
 
-[ ] - Use helmet and ImageKit cloud service (suggestion for something else) (2 points)
+[x] - Use Helmet and ImageKit cloud service (suggestion for something else) (2 points)
