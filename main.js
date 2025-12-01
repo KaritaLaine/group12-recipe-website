@@ -1,14 +1,14 @@
+import connectFlash from "connect-flash"
+import cookieParser from "cookie-parser"
 import dotenv from "dotenv"
 import express from "express"
 import layouts from "express-ejs-layouts"
-import mongoose from "mongoose"
-import cookieParser from "cookie-parser"
 import expressSession from "express-session"
-import connectFlash from "connect-flash"
+import mongoose from "mongoose"
 import passport from "passport"
-import { usersController } from "./controllers/usersController.js"
-import { recipeController } from "./controllers/recipeController.js"
 import { imageController } from "./controllers/imageController.js"
+import { recipeController } from "./controllers/recipeController.js"
+import { usersController } from "./controllers/usersController.js"
 import upload from "./middleware/upload.js"
 import { User } from "./models/user.js"
 
@@ -40,8 +40,8 @@ passport.use(User.createStrategy())
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
-app.use(cookieParser(process.env.SESSION_SECRET))
-app.use(
+router.use(cookieParser(process.env.SESSION_SECRET))
+router.use(
   expressSession({
     secret: process.env.SESSION_SECRET,
     cookie: { maxAge: 4000000 },
@@ -49,25 +49,26 @@ app.use(
     saveUninitialized: false,
   })
 )
+router.use(passport.initialize())
+router.use(passport.session())
 
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
+router.use(layouts)
+router.use(express.static("public"))
 
-app.use(express.static("public"))
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(connectFlash())
-app.use((req, res, next) => {
+router.use(express.urlencoded({ extended: false }))
+router.use(express.json())
+
+router.use(connectFlash())
+router.use((req, res, next) => {
   res.locals.loggedIn =
     typeof req.isAuthenticated === "function" ? req.isAuthenticated() : false
   res.locals.currentUser = req.user
   res.locals.flashMessages = req.flash()
   next()
 })
-app.use(layouts)
 
 // Get currently open path for highlighting the active link on navbar
-app.use((req, res, next) => {
+router.use((req, res, next) => {
   res.locals.activePath = req.path
   next()
 })
