@@ -1,5 +1,6 @@
 "use strict"
 
+import passport from "passport"
 import { User } from "../models/user.js"
 
 const getUserParams = (body) => {
@@ -11,9 +12,16 @@ const getUserParams = (body) => {
 }
 
 export const usersController = {
+  authenticate: passport.authenticate("local", {
+    failureRedirect: "/login",
+    failureFlash: "Failed to login.",
+    successRedirect: "/",
+    successFlash: "Logged in!",
+  }),
+
   index: async (req, res, next) => {
     try {
-      const users = await User.find({})
+      const users = await User.find()
       res.locals.users = users
       res.render("users/index")
     } catch (error) {
@@ -26,20 +34,29 @@ export const usersController = {
     res.render("users/login")
   },
 
+  logout: (req, res, next) => {
+    req.logout((err) => {
+      if (err) return next(err)
+      req.flash("success", "You have been logged out!")
+      res.redirect("/")
+    })
+  },
+
   register: (req, res) => {
     res.render("users/register")
   },
 
   create: async (req, res, next) => {
+    let newUser = new User(getUserParams(req.body))
     try {
-      let userParams = getUserParams(req.body)
-      const user = await User.create(userParams)
+      const user = await User.register(newUser, req.body.password)
+      req.flash("success", `${user.userName} registered successfully!`)
       res.locals.redirect = "/login"
-      res.locals.user = user
       next()
     } catch (error) {
-      console.log(`Error creating user: ${error.message}`)
-      next(error)
+      req.flash("error", `Failed to register user because: ${error.message}.`)
+      res.locals.redirect = "/register"
+      next()
     }
   },
 

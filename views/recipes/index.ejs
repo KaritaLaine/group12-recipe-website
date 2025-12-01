@@ -1,39 +1,49 @@
 <!-- views/recipes/index.ejs -->
 <%- contentFor('body') %>
 
-  <div>
-    <div class="recipes-header">
+<div>
+  <div class="recipes-header">
+    <div class="recipes-header-top">
       <h1>Recipes</h1>
 
-      <button onclick="window.location.href='/recipes/new'" class="btn">+ Add recipe</button>
+      <% if (loggedIn) { %>
+      <button onclick="window.location.href='/recipes/new'" class="btn">
+        + Add recipe
+      </button>
+      <% } %>
     </div>
 
-    <% if (!recipes || recipes.length===0) { %>
-      <p>No recipes yet. Add your first one!</p>
-      <% } else { %>
-        <div class="recipe-container">
-          <% recipes.forEach(r=> { %>
-            <div class="recipe-card">
-              <a href="/recipes/<%= r._id %>">
-
-                <% if (r.image) { %>
-                  <img src="<%= r.image %>" alt="<%= r.title %>">
-                <% } %>
-                    
-                <div class="recipe-row">
-                  <div class="left">
-                    <h3><%= r.title %></h3>
-                    <p>⏱ <%= r.timeToCook %> min</p>
-                  </div>
-
-                  <div class="right">
-                    <p>Likes: <%= r.likes %></p>
-                    <p>Comments: <%= r.comments.length %></p>
-                  </div>
-                </div>
-              </a>
-            </div>
-          <% }) %>
-        </div>
-        <% } %>
+    <% if (loggedIn) { %>
+    <p>Welcome, <%= currentUser.userName %>!</p>
+    <% } %>
   </div>
+
+  <% if (!recipes || recipes.length===0) { %>
+  <p>No recipes yet. Add your first one!</p>
+
+  <% } else { %>
+  <div class="recipe-container">
+    <% recipes.forEach(r=> { %>
+    <div class="recipe-card">
+      <a href="/recipes/<%= r._id %>">
+        <% if (r.image) { %>
+        <img src="<%= r.image %>" alt="<%= r.title %>" />
+        <% } %>
+
+        <div class="recipe-row">
+          <div class="left">
+            <h3><%= r.title %></h3>
+            <p>⏱ <%= r.timeToCook %> min</p>
+          </div>
+
+          <div class="right">
+            <p>Likes: <%= r.likes %></p>
+            <p>Comments: <%= r.comments.length %></p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% }) %>
+  </div>
+  <% } %>
+</div>

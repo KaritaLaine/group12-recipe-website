@@ -1,11 +1,17 @@
+import connectFlash from "connect-flash"
+import cookieParser from "cookie-parser"
 import dotenv from "dotenv"
 import express from "express"
 import layouts from "express-ejs-layouts"
+import expressSession from "express-session"
 import mongoose from "mongoose"
-import { usersController } from "./controllers/usersController.js"
-import { recipeController } from "./controllers/recipeController.js"
+import passport from "passport"
 import { imageController } from "./controllers/imageController.js"
+import { recipeController } from "./controllers/recipeController.js"
+import { usersController } from "./controllers/usersController.js"
+import { isLoggedIn, isNotLoggedIn } from "./middleware/isLoggedIn.js"
 import upload from "./middleware/upload.js"
+import { User } from "./models/user.js"
 
 dotenv.config()
 
@@ -30,23 +36,56 @@ const port = process.env.PORT || 3000
 
 app.set("view engine", "ejs")
 app.set("port", port)
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
-app.use(express.static("public"))
-app.use(layouts)
+
+passport.use(User.createStrategy())
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
+router.use(cookieParser(process.env.SESSION_SECRET))
+router.use(
+  expressSession({
+    secret: process.env.SESSION_SECRET,
+    cookie: { maxAge: 4000000 },
+    resave: false,
+    saveUninitialized: false,
+  })
+)
+router.use(passport.initialize())
+router.use(passport.session())
+
+router.use(layouts)
+router.use(express.static("public"))
+
+router.use(express.urlencoded({ extended: false }))
+router.use(express.json())
+
+router.use(connectFlash())
+router.use((req, res, next) => {
+  res.locals.loggedIn =
+    typeof req.isAuthenticated === "function" ? req.isAuthenticated() : false
+  res.locals.currentUser = req.user
+  res.locals.flashMessages = req.flash()
+  next()
+})
 
 // Get currently open path for highlighting the active link on navbar
-app.use((req, res, next) => {
+router.use((req, res, next) => {
   res.locals.activePath = req.path
   next()
 })
 
 // Routes
 router.get("/", recipeController.showRecipes, imageController.getImages)
-router.get("/login", usersController.login)
-router.get("/register", usersController.register)
-router.post("/users/create", usersController.create, usersController.redirectView)
-router.get("/recipes/new", recipeController.newRecipeForm)
+router.get("/login", isNotLoggedIn, usersController.login)
+router.post("/users/login", usersController.authenticate)
+router.get("/register", isNotLoggedIn, usersController.register)
+router.get("/logout", isLoggedIn, usersController.logout)
+router.post(
+  "/users/create",
+  usersController.create,
+  usersController.redirectView
+)
+router.get("/recipes/new", isLoggedIn, recipeController.newRecipeForm)
 router.get("/recipes/:id", recipeController.showSingleRecipe)
 router.post("/recipes", upload.single("image"), recipeController.createRecipe)
 

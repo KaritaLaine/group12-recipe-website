@@ -18,17 +18,30 @@
 
   <body>
     <header>
-      <!-- TODO: add navbar links here -->
       <div class="header-content">
         <a href="/" class="<%= activePath === '/' ? 'active' : '' %>">
           Recipes
         </a>
 
+        <% if (loggedIn) { %>
+        <a href="/logout">Logout</a>
+
+        <% } else { %>
         <a href="/login" class="<%= activePath === '/login' ? 'active' : '' %>">
           Login
         </a>
+        <% } %>
       </div>
     </header>
+
+    <div class="flash-messages">
+      <% if (flashMessages) { %> <% if (flashMessages.success) { %>
+      <p><%= flashMessages.success %></p>
+
+      <% } else if (flashMessages.error) { %>
+      <p class="error"><%= flashMessages.error %></p>
+      <% } %> <% } %>
+    </div>
 
     <div class="wrapper"><%- body %></div>
 
