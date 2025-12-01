@@ -23,17 +23,23 @@
           Recipes
         </a>
 
+        <% if (loggedIn) { %>
+        <a href="/logout">Logout</a>
+
+        <% } else { %>
         <a href="/login" class="<%= activePath === '/login' ? 'active' : '' %>">
           Login
         </a>
+        <% } %>
       </div>
     </header>
 
-    <div>
+    <div class="flash-messages">
       <% if (flashMessages) { %> <% if (flashMessages.success) { %>
-      <div><p><%= flashMessages.success %></p></div>
+      <div class="success"><p><%= flashMessages.success %></p></div>
+
       <% } else if (flashMessages.error) { %>
-      <div><p><%= flashMessages.error %></p></div>
+      <div class="error"><p><%= flashMessages.error %></p></div>
       <% } %> <% } %>
     </div>
 

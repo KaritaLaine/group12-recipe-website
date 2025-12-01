@@ -34,6 +34,14 @@ export const usersController = {
     res.render("users/login")
   },
 
+  logout: (req, res, next) => {
+    req.logout((err) => {
+      if (err) return next(err)
+      req.flash("success", "You have been logged out!")
+      res.redirect("/")
+    })
+  },
+
   register: (req, res) => {
     res.render("users/register")
   },

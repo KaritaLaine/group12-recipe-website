@@ -78,6 +78,7 @@ router.get("/", recipeController.showRecipes, imageController.getImages)
 router.get("/login", usersController.login)
 router.post("/users/login", usersController.authenticate)
 router.get("/register", usersController.register)
+router.get("/logout", usersController.logout)
 router.post(
   "/users/create",
   usersController.create,
