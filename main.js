@@ -75,7 +75,7 @@ app.use((req, res, next) => {
 // Routes
 router.get("/", recipeController.showRecipes, imageController.getImages)
 router.get("/login", usersController.login)
-router.post("/login", usersController.authenticate)
+router.post("/users/login", usersController.authenticate)
 router.get("/register", usersController.register)
 router.post(
   "/users/create",
