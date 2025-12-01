@@ -29,6 +29,14 @@
       </div>
     </header>
 
+    <div>
+      <% if (flashMessages) { %> <% if (flashMessages.success) { %>
+      <div><p><%= flashMessages.success %></p></div>
+      <% } else if (flashMessages.error) { %>
+      <div><p><%= flashMessages.error %></p></div>
+      <% } %> <% } %>
+    </div>
+
     <div class="wrapper"><%- body %></div>
 
     <footer>
