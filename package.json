@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/KaritaLaine/group12-recipe-website#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.7",
     "dotenv": "^17.2.3",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
