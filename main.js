@@ -2,10 +2,15 @@ import dotenv from "dotenv"
 import express from "express"
 import layouts from "express-ejs-layouts"
 import mongoose from "mongoose"
+import cookieParser from "cookie-parser"
+import expressSession from "express-session"
+import connectFlash from "connect-flash"
+import passport from "passport"
 import { usersController } from "./controllers/usersController.js"
 import { recipeController } from "./controllers/recipeController.js"
 import { imageController } from "./controllers/imageController.js"
 import upload from "./middleware/upload.js"
+import { User } from "./models/user.js"
 
 dotenv.config()
 
@@ -30,9 +35,35 @@ const port = process.env.PORT || 3000
 
 app.set("view engine", "ejs")
 app.set("port", port)
+
+passport.use(User.createStrategy())
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
+app.use(cookieParser(process.env.SESSION_SECRET))
+app.use(
+  expressSession({
+    secret: process.env.SESSION_SECRET,
+    cookie: { maxAge: 4000000 },
+    resave: false,
+    saveUninitialized: false,
+  })
+)
+
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+
 app.use(express.static("public"))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(connectFlash())
+app.use((req, res, next) => {
+  res.locals.loggedIn =
+    typeof req.isAuthenticated === "function" ? req.isAuthenticated() : false
+  res.locals.currentUser = req.user
+  res.locals.flashMessages = req.flash()
+  next()
+})
 app.use(layouts)
 
 // Get currently open path for highlighting the active link on navbar
@@ -44,8 +75,13 @@ app.use((req, res, next) => {
 // Routes
 router.get("/", recipeController.showRecipes, imageController.getImages)
 router.get("/login", usersController.login)
+router.post("/login", usersController.authenticate)
 router.get("/register", usersController.register)
-router.post("/users/create", usersController.create, usersController.redirectView)
+router.post(
+  "/users/create",
+  usersController.create,
+  usersController.redirectView
+)
 router.get("/recipes/new", recipeController.newRecipeForm)
 router.get("/recipes/:id", recipeController.showSingleRecipe)
 router.post("/recipes", upload.single("image"), recipeController.createRecipe)
