@@ -142,9 +142,21 @@ input {
 
 .recipes-header {
   display: flex;
+  flex-direction: column;
+}
+
+.recipes-header-top {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+}
+
+.recipes-header h1 {
+  margin: 0;
+}
+
+.recipes header p {
+  margin-bottom: 1rem;
 }
 
 .recipe-card {
