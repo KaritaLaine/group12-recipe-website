@@ -36,10 +36,10 @@
 
     <div class="flash-messages">
       <% if (flashMessages) { %> <% if (flashMessages.success) { %>
-      <div class="success"><p><%= flashMessages.success %></p></div>
+      <p><%= flashMessages.success %></p>
 
       <% } else if (flashMessages.error) { %>
-      <div class="error"><p><%= flashMessages.error %></p></div>
+      <p class="error"><%= flashMessages.error %></p>
       <% } %> <% } %>
     </div>
 

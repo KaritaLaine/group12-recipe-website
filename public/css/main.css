@@ -245,3 +245,13 @@ input {
 .single-recipe li {
   margin-bottom: 8px;
 }
+
+/* Flash messages */
+.flash-messages {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.error {
+  color: red;
+}
