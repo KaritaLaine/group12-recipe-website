@@ -6,9 +6,11 @@
     <div class="recipes-header-top">
       <h1>Recipes</h1>
 
+      <% if (loggedIn) { %>
       <button onclick="window.location.href='/recipes/new'" class="btn">
         + Add recipe
       </button>
+      <% } %>
     </div>
 
     <% if (loggedIn) { %>
