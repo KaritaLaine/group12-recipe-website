@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import express from "express"
 import layouts from "express-ejs-layouts"
 import expressSession from "express-session"
+import helmet from "helmet"
 import mongoose from "mongoose"
 import passport from "passport"
 import { imageController } from "./controllers/imageController.js"
@@ -16,6 +17,19 @@ import { User } from "./models/user.js"
 dotenv.config()
 
 const app = express()
+
+// Use helmet and allow images from ImageKit
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+    contentSecurityPolicy: {
+      directives: {
+        imgSrc: ["'self'", "https://ik.imagekit.io"],
+      },
+    },
+  })
+)
+
 const router = express.Router()
 
 if (!process.env.MONGODB_URI) {
