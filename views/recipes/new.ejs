@@ -1,0 +1,35 @@
+<%- contentFor('body') %>
+
+  <div>
+    <h1>Add a new recipe</h1>
+
+    <form action="/recipes" method="POST" enctype="multipart/form-data">
+      <div>
+        <label>Title</label><br />
+        <input name="title" type="text" required style="width:300px;" />
+      </div>
+
+      <div">
+        <label>Time to cook (minutes)</label><br />
+        <input name="timeToCook" type="number" min="1" required style="width:120px;" />
+  </div>
+
+  <div>
+    <label>Ingredients (one per line)</label><br />
+    <textarea name="ingredients" rows="6" cols="50"></textarea>
+  </div>
+
+  <div>
+    <label>Steps (one per line)</label><br />
+    <textarea name="steps" rows="6" cols="50"></textarea>
+  </div>
+
+  <div>
+    <label>Image</label><br />
+    <input name="image" type="file" accept="image/*" />
+  </div>
+
+  <button type="submit">Save recipe</button>
+  <a href="/">Cancel</a>
+  </form>
+  </div>

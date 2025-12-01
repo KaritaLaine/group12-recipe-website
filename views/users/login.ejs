@@ -1,0 +1,20 @@
+<%- contentFor('body') %>
+<div class="form-container">
+  <form action="/users/login" class="login-form" method="POST">
+    <h1>Login</h1>
+
+    <label for="inputUserName">Username</label>
+    <input type="text" name="userName" id="inputUserName" required />
+
+    <label for="inputPassword">Password</label>
+    <input type="password" name="password" id="inputPassword" required />
+
+    <button type="submit" class="btn">Login</button>
+  </form>
+
+  <p>
+    Don't have an account yet?
+    <span class="action-link"><a href="/register">Register here</a></span
+    >!
+  </p>
+</div>
