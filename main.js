@@ -9,6 +9,7 @@ import passport from "passport"
 import { imageController } from "./controllers/imageController.js"
 import { recipeController } from "./controllers/recipeController.js"
 import { usersController } from "./controllers/usersController.js"
+import { isLoggedIn, isNotLoggedIn } from "./middleware/isLoggedIn.js"
 import upload from "./middleware/upload.js"
 import { User } from "./models/user.js"
 
@@ -75,16 +76,16 @@ router.use((req, res, next) => {
 
 // Routes
 router.get("/", recipeController.showRecipes, imageController.getImages)
-router.get("/login", usersController.login)
+router.get("/login", isNotLoggedIn, usersController.login)
 router.post("/users/login", usersController.authenticate)
-router.get("/register", usersController.register)
-router.get("/logout", usersController.logout)
+router.get("/register", isNotLoggedIn, usersController.register)
+router.get("/logout", isLoggedIn, usersController.logout)
 router.post(
   "/users/create",
   usersController.create,
   usersController.redirectView
 )
-router.get("/recipes/new", recipeController.newRecipeForm)
+router.get("/recipes/new", isLoggedIn, recipeController.newRecipeForm)
 router.get("/recipes/:id", recipeController.showSingleRecipe)
 router.post("/recipes", upload.single("image"), recipeController.createRecipe)
 
