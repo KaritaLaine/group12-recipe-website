@@ -15,14 +15,32 @@
   </div>
 
   <div>
-    <label>Ingredients (one per line)</label><br />
-    <textarea name="ingredients" rows="6" cols="50"></textarea>
+    <label>Ingredients</label><br />
+
+    <ul id="ingredientsList"></ul>
+
+    <div>
+      <input id="ingredientInput" type="text" placeholder="Add ingredient..." style="width:300px;" />
+      <button id="addIngredientBtn" type="button">+</button>
+    </div>
+
+    <textarea id="ingredientsTextarea" name="ingredients" rows="6" cols="50" style="display:none;"></textarea>
   </div>
 
   <div>
-    <label>Steps (one per line)</label><br />
-    <textarea name="steps" rows="6" cols="50"></textarea>
+    <label>Steps</label><br />
+
+    <ol id="stepsList"></ol>
+
+    <div>
+      <input id="stepInput" type="text" placeholder="Add step..." style="width:300px;" />
+      <button id="addStepBtn" type="button">+</button>
+    </div>
+
+    <textarea id="stepsTextarea" name="steps" rows="6" cols="50" style="display:none;"></textarea>
   </div>
+
+  <script src="/js/new.js"></script>
 
   <div>
     <label>Image</label><br />
