@@ -1,43 +1,75 @@
 <!-- views/recipes/show.ejs -->
 <%- contentFor('body') %>
 
-<div>
-  <div class="recipes-header-top">
-    <a href="/">← Back to recipes</a>
-    <a href="/recipes/<%= recipe._id %>/reviews/new" class="btn">+ Add review</a>
+  <div>
+    <div class="recipes-header-top">
+      <a href="/">← Back to recipes</a>
+    </div>
+
+
+    <div class="single-recipe">
+      <h1>
+        <%= recipe.title %>
+      </h1>
+      <p>⏱ <%= recipe.timeToCook %> min</p>
+
+      <% if (recipe.image) { %>
+        <img src="<%= recipe.image %>" alt="<%= recipe.title %>">
+        <% } %>
+
+          <% if (recipe.ingredients?.length) { %>
+            <h2>Ingredients</h2>
+            <ul>
+              <% recipe.ingredients.forEach(i=> { %>
+                <li>
+                  <%= i %>
+                </li>
+                <% }) %>
+            </ul>
+            <% } %>
+
+              <% if (recipe.steps?.length) { %>
+                <h2>Steps</h2>
+                <ol>
+                  <% recipe.steps.forEach(s=> { %>
+                    <li>
+                      <%= s %>
+                    </li>
+                    <% }) %>
+                </ol>
+                <% } %>
+
+                  <hr />
+
+                  <h2>Reviews</h2>
+                  <% if (recipe.reviews?.length) { %>
+                    <ul class="reviews-list">
+                      <% recipe.reviews.forEach(r=> { %>
+                        <li class="review-card">
+                          <h3>
+                            <%= r.title %>
+                          </h3>
+
+                          <div class="review-rating">
+                            <% for (let i=0; i < r.rating; i++) { %>
+                              ⭐
+                              <% } %>
+                          </div>
+
+                          <p>
+                            <%= r.review %>
+                          </p>
+
+                          <% if (r.author) { %>
+                            <small>by <%= r.author.username || r.author %></small>
+                            <% } %>
+                        </li>
+                        <% }) %>
+                    </ul>
+                    <% } else { %>
+                      <p>No reviews yet. Be the first to add one!</p>
+                      <% } %>
+                        <a href="/recipes/<%= recipe._id %>/reviews/new" class="btn">+ Add review</a>
+
+    </div>
   </div>
-    
-
-  <div class="single-recipe">
-    <h1>
-      <%= recipe.title %>
-    </h1>
-    <p>⏱ <%= recipe.timeToCook %> min</p>
-
-    <% if (recipe.image) { %>
-      <img src="<%= recipe.image %>" alt="<%= recipe.title %>">
-      <% } %>
-
-      <% if (recipe.ingredients?.length) { %>
-        <h2>Ingredients</h2>
-        <ul>
-          <% recipe.ingredients.forEach(i=> { %>
-            <li>
-              <%= i %>
-            </li>
-          <% }) %>
-        </ul>
-      <% } %>
-
-      <% if (recipe.steps?.length) { %>
-        <h2>Steps</h2>
-        <ol>
-          <% recipe.steps.forEach(s=> { %>
-            <li>
-              <%= s %>
-            </li>
-          <% }) %>
-        </ol>
-      <% } %>
-  </div>
-</div>

@@ -210,6 +210,7 @@ input {
 .right p {
   margin: 0;
 }
+
 .left h3 {
   margin: 0;
 }
@@ -266,4 +267,36 @@ input {
 
 .error {
   color: red;
+}
+
+
+/* ------------------------------- */
+/* Reviews section (added)         */
+/* ------------------------------- */
+
+.single-recipe .reviews-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0 1rem 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+
+  width: 100%;
+}
+
+.single-recipe .review-card h3,
+.single-recipe .review-card p,
+.single-recipe .review-card small {
+  color: #2c3e50;
+  text-align: center;
+}
+
+.single-recipe .review-rating {
+  display: flex;
+  justify-content: center;
+  margin: 0.3rem 0 0.6rem 0;
+  font-size: 1.2rem;
 }
