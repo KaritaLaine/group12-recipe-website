@@ -12,7 +12,15 @@ const imagekit = new ImageKit({
 
 const showRecipes = async (req, res) => {
   try {
-    const recipes = await Recipe.find().lean()
+    const recipes = await Recipe.find().populate("reviews").lean()
+    recipes.forEach(recipe => {
+      if (recipe.reviews && recipe.reviews.length > 0) {
+        const total = recipe.reviews.reduce((sum, review) => sum + review.rating, 0);
+        recipe.avgRating = (total / recipe.reviews.length).toFixed(0);
+      } else {
+        recipe.avgRating = null;
+      }
+    });
     res.render("recipes/index", { recipes })
   } catch (err) {
     console.error(err)
@@ -22,7 +30,7 @@ const showRecipes = async (req, res) => {
 
 const showSingleRecipe = async (req, res) => {
   try {
-    const recipe = await Recipe.findById(req.params.id).lean()
+    const recipe = await Recipe.findById(req.params.id).populate("reviews").lean()
     if (!recipe) return res.status(404).send("Recipe not found")
     res.render("recipes/show", { recipe })
   } catch (err) {
