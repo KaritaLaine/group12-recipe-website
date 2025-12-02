@@ -1,39 +1,43 @@
 <!-- views/recipes/show.ejs -->
 <%- contentFor('body') %>
 
-  <div>
+<div>
+  <div class="recipes-header-top">
     <a href="/">← Back to recipes</a>
-
-    <div class="single-recipe">
-      <h1>
-        <%= recipe.title %>
-      </h1>
-      <p>⏱ <%= recipe.timeToCook %> min</p>
-
-      <% if (recipe.image) { %>
-        <img src="<%= recipe.image %>" alt="<%= recipe.title %>">
-        <% } %>
-
-          <% if (recipe.ingredients?.length) { %>
-            <h2>Ingredients</h2>
-            <ul>
-              <% recipe.ingredients.forEach(i=> { %>
-                <li>
-                  <%= i %>
-                </li>
-                <% }) %>
-            </ul>
-            <% } %>
-
-              <% if (recipe.steps?.length) { %>
-                <h2>Steps</h2>
-                <ol>
-                  <% recipe.steps.forEach(s=> { %>
-                    <li>
-                      <%= s %>
-                    </li>
-                    <% }) %>
-                </ol>
-                <% } %>
-    </div>
+    <a href="/recipes/<%= recipe._id %>/reviews/new" class="btn">+ Add review</a>
   </div>
+    
+
+  <div class="single-recipe">
+    <h1>
+      <%= recipe.title %>
+    </h1>
+    <p>⏱ <%= recipe.timeToCook %> min</p>
+
+    <% if (recipe.image) { %>
+      <img src="<%= recipe.image %>" alt="<%= recipe.title %>">
+      <% } %>
+
+      <% if (recipe.ingredients?.length) { %>
+        <h2>Ingredients</h2>
+        <ul>
+          <% recipe.ingredients.forEach(i=> { %>
+            <li>
+              <%= i %>
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
+
+      <% if (recipe.steps?.length) { %>
+        <h2>Steps</h2>
+        <ol>
+          <% recipe.steps.forEach(s=> { %>
+            <li>
+              <%= s %>
+            </li>
+          <% }) %>
+        </ol>
+      <% } %>
+  </div>
+</div>

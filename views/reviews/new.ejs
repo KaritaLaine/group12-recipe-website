@@ -1,0 +1,29 @@
+<%- contentFor('body') %>
+
+  <div>
+    <h1>Add a new review</h1>
+
+    <form action="/reviews" method="POST" enctype="multipart/form-data">
+      <div>
+        <label>Title</label><br />
+        <input name="title" type="text" required style="width:300px;" />
+      </div>
+
+      <div">
+        <label>Review</label><br />
+        <textarea name="review" required style="width:500px; height: 200px;"></textarea>
+  </div>
+
+  <div>
+  <label>Rating:</label><br />
+    <label><input type="radio" name="rating" value="1" required> 1</label>
+    <label><input type="radio" name="rating" value="2"> 2</label>
+    <label><input type="radio" name="rating" value="3"> 3</label>
+    <label><input type="radio" name="rating" value="4"> 4</label>
+    <label><input type="radio" name="rating" value="5"> 5</label>
+  </div>
+
+  <button type="submit">Save review</button>
+  <a href="/recipes/<%= recipe._id %>">Cancel</a>
+  </form>
+  </div>
