@@ -1,45 +1,47 @@
 <!-- views/recipes/index.ejs -->
 <%- contentFor('body') %>
 
-  <div>
-    <div class="recipes-header">
-      <div class="recipes-header-top">
-        <h1>Recipes</h1>
-
-        <% if (loggedIn) { %>
-          <a href="/recipes/new" class="btn">+ Add recipe</a>
-          </button>
-          <% } %>
-      </div>
+<div>
+  <div class="recipes-header">
+    <div class="recipes-header-top">
+      <h1>Recipes</h1>
 
       <% if (loggedIn) { %>
-        <p>Welcome, <%= currentUser.userName %>!</p>
-        <% } %>
+        <a href="/recipes/new" class="btn">+ Add recipe</a>
+      <% } %>
     </div>
 
-    <% if (!recipes || recipes.length===0) { %>
+    <% if (loggedIn) { %>
+      <p>Welcome, <%= currentUser.userName %>!</p>
+    <% } %>
+
+    <% if (!recipes || recipes.length === 0) { %>
       <p>No recipes yet. Add your first one!</p>
-
-      <% } else { %>
-        <div class="recipe-container">
-          <% recipes.forEach(r=> { %>
-            <div class="recipe-card">
-              <a href="/recipes/<%= r._id %>">
-                <% if (r.image) { %>
-                  <img src="<%= r.image %>" alt="<%= r.title %>" />
+    <% } else { %>
+      <div class="recipe-container">
+        <% recipes.forEach(function(r) { %>
+          <div class="recipe-card">
+            <a href="/recipes/<%= r._id %>">
+              <% if (r.image) { %>
+                <img src="<%= r.image %>" alt="<%= r.title %>" />
+              <% } %>
+              <h3><%= r.title %></h3>
+              <div class="recipe-row">
+                <div class="left">
+                  <p>⏱ <%= r.timeToCook %> min</p>
+                </div>
+                <div class="right">
+                  <% if (!r.avgRating) { %>
+                    <p></p>
+                  <% } else { %>
+                    <p>Rating: <%= r.avgRating %> / 5</p>
                   <% } %>
-
-                    <div class="recipe-row">
-                      <div class="left">
-                        <h3>
-                          <%= r.title %>
-                        </h3>
-                        <p>⏱ <%= r.timeToCook %> min</p>
-                      </div>
-                    </div>
-              </a>
-            </div>
-            <% }) %>
-        </div>
-        <% } %>
+                </div>
+              </div>
+            </a>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
   </div>
+</div>
