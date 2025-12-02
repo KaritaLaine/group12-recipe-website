@@ -27,15 +27,17 @@
         <% if (r.image) { %>
         <img src="<%= r.image %>" alt="<%= r.title %>" />
         <% } %>
-
+        <h3><%= r.title %></h3>
         <div class="recipe-row">
           <div class="left">
-            <h3><%= r.title %></h3>
             <p>⏱ <%= r.timeToCook %> min</p>
           </div>
-
           <div class="right">
-            <p>Reviews:</p>
+            <% if (!r.avgRating) { %>
+              <p></p>
+            <% } else { %>
+              <p>Rating: <%= r.avgRating %> / 5</p>
+            <% } %>
           </div>
         </div>
       </a>
