@@ -103,9 +103,10 @@ router.post(
 )
 router.get("/recipes/new", isLoggedIn, recipeController.newRecipeForm)
 router.get("/recipes/:id", recipeController.showSingleRecipe)
-router.post("/recipes", upload.single("image"), recipeController.createRecipe)
+router.post("/recipes", isLoggedIn, upload.single("image"), recipeController.createRecipe)
 
-router.get("/recipes/:id/reviews/new", reviewController.newReviewForm)
+router.get("/recipes/:id/reviews/new", isLoggedIn, reviewController.newReviewForm)
+router.post("/recipes/:id/reviews", isLoggedIn, reviewController.createReview);
 
 app.use("/", router)
 
