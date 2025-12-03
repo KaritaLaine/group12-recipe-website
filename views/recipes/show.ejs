@@ -8,9 +8,7 @@
 
 
   <div class="single-recipe">
-    <h1>
-      <%= recipe.title %>
-    </h1>
+    <h1 class="recipe-title"><%= recipe.title %></h1>
     <p>⏱ <%= recipe.timeToCook %> min</p>
 
     <% if (recipe.image) { %>

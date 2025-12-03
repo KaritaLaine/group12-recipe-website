@@ -175,9 +175,11 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #094067;
 }
 
 .recipes-header h1 {
+  color: #094067;
   margin: 0;
 }
 
@@ -216,13 +218,13 @@ input {
 .recipe-card h3 {
   margin: 10px 0 5px 0;
   font-size: 1.2em;
-  color: #2c3e50;
+  color: #094067;
 }
 
 .recipe-card p {
   margin: 0 0 10px 0;
   font-size: 0.9em;
-  color: #2c3e50;
+  color: #094067;
 }
 
 .recipe-row {
@@ -247,12 +249,15 @@ input {
   align-items: center;
   display: flex;
   flex-direction: column;
+  gap: 1.25rem;
+  padding-bottom: 3rem;  
 }
 
 .single-recipe .recipe-title {
-  font-size: 2em;
-  margin-bottom: 10px;
-  color: #2c3e50;
+  font-size: 2.2rem;
+  margin: 0; 
+  text-align: center;
+  color: #094067;
 }
 
 .single-recipe img {
@@ -264,12 +269,17 @@ input {
 }
 
 .single-recipe h2 {
-  font-size: 1.5em;
-  margin-top: 30px;
-  margin-bottom: 10px;
-  color: #2c3e50;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 5px;
+  font-size: 1.5rem;
+  margin: 1rem 0 0.25rem;
+  padding: 0;
+  text-align: center;
+}
+
+.single-recipe p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
 }
 
 /* Lists on the new-recipe form */
@@ -289,7 +299,7 @@ input {
   padding: 0.4rem 0.6rem;
   margin-bottom: 0.5rem;
 
-  border: 1px solid #09406733;
+  border: 1px solid #094067;
   border-radius: 3px;
   background: #fffffe;
   font-size: 1rem;
@@ -298,14 +308,23 @@ input {
 /* Ingredients and steps */
 .single-recipe ul,
 .single-recipe ol {
-  margin: 0 0 20px 20px;
+  margin: 0 0 0 0;
   padding: 0;
   line-height: 1.6;
   max-width: 500px;
 }
 
 .single-recipe li {
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
+}
+
+/* Divider */
+.single-recipe hr {
+  width: 100%;
+  max-width: 520px;
+  border: none;
+  border-top: 1px solid #90b4ce;
+  margin: 0.75rem 0;
 }
 
 /* Flash messages */
@@ -318,35 +337,45 @@ input {
   color: red;
 }
 
-
-
 /* Reviews section */
 
-
 .single-recipe .reviews-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 1rem 0 1rem 0;
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 3rem;
-
-  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  max-width: 320px;
+  margin: 0 auto;
 }
 
-.single-recipe .review-card h3,
-.single-recipe .review-card p,
-.single-recipe .review-card small {
-  color: #2c3e50;
+.single-recipe .review-card {
+  background: #90b4ce;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.single-recipe .review-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
   text-align: center;
+}
+
+.single-recipe .review-card p {
+  margin: 0;
+  text-align: center;
+}
+
+.single-recipe .review-card small {
+  margin-top: auto;
+  text-align: center;
+  opacity: 0.85;
 }
 
 .single-recipe .review-rating {
   display: flex;
   justify-content: center;
-  margin: 0.3rem 0 0.6rem 0;
+  margin: 0 0 0 0;
   font-size: 1.2rem;
 }
 
