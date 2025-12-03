@@ -20,11 +20,13 @@ function renderIngredients() {
   ingredientsList.innerHTML = "";
   ingredients.forEach((item, idx) => {
     const li = document.createElement("li");
+    li.classList.add("list-item");
     li.textContent = item + " ";
 
     const removeBtn = document.createElement("button");
     removeBtn.type = "button";
     removeBtn.textContent = "-";
+    removeBtn.classList.add("list-btn");
     removeBtn.addEventListener("click", () => {
       ingredients.splice(idx, 1);
       renderIngredients();
@@ -40,11 +42,13 @@ function renderSteps() {
   stepsList.innerHTML = "";
   steps.forEach((item, idx) => {
     const li = document.createElement("li");
+    li.classList.add("list-item"); 
     li.textContent = item + " ";
 
     const removeBtn = document.createElement("button");
     removeBtn.type = "button";
     removeBtn.textContent = "-";
+    removeBtn.classList.add("list-btn");
     removeBtn.addEventListener("click", () => {
       steps.splice(idx, 1);
       renderSteps();

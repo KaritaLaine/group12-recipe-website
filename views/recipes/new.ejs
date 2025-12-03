@@ -1,53 +1,68 @@
 <%- contentFor('body') %>
 
-  <div>
+<div class="wrapper">
+  <div class="form-container">
     <h1>Add a new recipe</h1>
 
-    <form action="/recipes" method="POST" enctype="multipart/form-data">
-      <div>
-        <label>Title</label><br />
-        <input name="title" type="text" required style="width:300px;" />
+    <form class="login-form" action="/recipes" method="POST" enctype="multipart/form-data">
+      <label for="title">Title</label>
+      <input id="title" name="title" type="text" required />
+
+      <label for="timeToCook">Time to cook (minutes)</label>
+      <input id="timeToCook" name="timeToCook" type="number" min="1" required />
+
+      <label>Ingredients</label>
+      <ul id="ingredientsList"></ul>
+
+      <div style="display:flex; gap:1rem; width:100%; align-items:center;">
+        <input
+          id="ingredientInput"
+          type="text"
+          placeholder="Add ingredient..."
+          style="flex:1;"
+        />
+        <button id="addIngredientBtn" type="button" class="list-btn">+</button>
       </div>
 
-      <div">
-        <label>Time to cook (minutes)</label><br />
-        <input name="timeToCook" type="number" min="1" required style="width:120px;" />
+      <textarea
+        id="ingredientsTextarea"
+        name="ingredients"
+        rows="6"
+        cols="50"
+        style="display:none;"
+      ></textarea>
+
+      <label>Steps</label>
+      <ol id="stepsList"></ol>
+
+      <div style="display:flex; gap:1rem; width:100%; align-items:center;">
+        <input
+          id="stepInput"
+          type="text"
+          placeholder="Add step..."
+          style="flex:1;"
+        />
+        <button id="addStepBtn" type="button" class="list-btn">+</button>
+      </div>
+
+      <textarea
+        id="stepsTextarea"
+        name="steps"
+        rows="6"
+        cols="50"
+        style="display:none;"
+      ></textarea>
+
+      <label for="image">Image</label>
+      <input id="image" name="image" type="file" accept="image/*" />
+
+      <button class="btn" type="submit">Save recipe</button>
+
+      <p class="action-link">
+        <a href="/">Cancel</a>
+      </p>
+    </form>
   </div>
+</div>
 
-  <div>
-    <label>Ingredients</label><br />
-
-    <ul id="ingredientsList"></ul>
-
-    <div>
-      <input id="ingredientInput" type="text" placeholder="Add ingredient..." style="width:300px;" />
-      <button id="addIngredientBtn" type="button">+</button>
-    </div>
-
-    <textarea id="ingredientsTextarea" name="ingredients" rows="6" cols="50" style="display:none;"></textarea>
-  </div>
-
-  <div>
-    <label>Steps</label><br />
-
-    <ol id="stepsList"></ol>
-
-    <div>
-      <input id="stepInput" type="text" placeholder="Add step..." style="width:300px;" />
-      <button id="addStepBtn" type="button">+</button>
-    </div>
-
-    <textarea id="stepsTextarea" name="steps" rows="6" cols="50" style="display:none;"></textarea>
-  </div>
-
-  <script src="/js/new.js"></script>
-
-  <div>
-    <label>Image</label><br />
-    <input name="image" type="file" accept="image/*" />
-  </div>
-
-  <button type="submit">Save recipe</button>
-  <a href="/">Cancel</a>
-  </form>
-  </div>
+<script src="/js/new.js"></script>

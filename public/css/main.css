@@ -63,18 +63,43 @@ footer {
 /* Button */
 
 .btn {
-  background-color: #3da9fc;
+  background-color: #094067;
   color: #fffffe;
   border-color: transparent;
   border-radius: 3px;
   padding: 0.5rem 1.5rem;
   font-size: 1rem;
   font-weight: 600;
+  font-family: inherit;
+  text-decoration: none
 }
 
 .btn:hover {
-  background-color: #1275bd;
+  background-color: #90b4ce;
   transition: 0.2s;
+}
+
+.list-btn {
+  background-color: #094067;
+  color: #fffffe;
+  border-color: transparent;
+  border-radius: 3px;
+  padding: 0.2rem 0.6rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+input[type="file"]::file-selector-button {
+  background-color: #094067;
+  color: #fffffe;
+  border-color: transparent;
+  border-radius: 3px;
+  padding: 0.2rem 0.6rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  margin-right: 0.75rem;
 }
 
 /* Login & register form */
@@ -114,11 +139,11 @@ footer {
 
 .action-link a {
   text-decoration: none;
-  color: #3da9fc;
+  color: #90b4ce
 }
 
 .action-link a:hover {
-  color: #1275bd;
+  color: #094067;
   transition: 0.2s;
 }
 
@@ -138,6 +163,7 @@ input {
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .recipes-header {
@@ -246,6 +272,29 @@ input {
   padding-bottom: 5px;
 }
 
+/* Lists on the new-recipe form */
+#ingredientsList,
+#stepsList {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Each added ingredient/step row */
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0.4rem 0.6rem;
+  margin-bottom: 0.5rem;
+
+  border: 1px solid #09406733;
+  border-radius: 3px;
+  background: #fffffe;
+  font-size: 1rem;
+}
+
 /* Ingredients and steps */
 .single-recipe ul,
 .single-recipe ol {
@@ -270,9 +319,9 @@ input {
 }
 
 
-/* ------------------------------- */
-/* Reviews section (added)         */
-/* ------------------------------- */
+
+/* Reviews section */
+
 
 .single-recipe .reviews-list {
   list-style: none;
@@ -300,3 +349,4 @@ input {
   margin: 0.3rem 0 0.6rem 0;
   font-size: 1.2rem;
 }
+
