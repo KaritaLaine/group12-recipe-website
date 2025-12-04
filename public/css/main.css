@@ -357,6 +357,7 @@ input {
   display: flex;
   flex-direction: column;
   gap: 0rem;
+  max-width: 320px;
 }
 
 .single-recipe .review-card h3 {
