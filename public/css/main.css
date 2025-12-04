@@ -340,9 +340,13 @@ input {
 /* Reviews section */
 
 .single-recipe .reviews-list {
+  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  max-width: 320px;
+  gap: 1rem;
+  max-width: 700px;
   margin: 0 auto;
+  padding: 0;
+  list-style: none;
 }
 
 .single-recipe .review-card {
