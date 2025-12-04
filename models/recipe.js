@@ -22,13 +22,11 @@ const recipeSchema = mongoose.Schema({
   image: {
     type: String
   },
-  likes: {
-    type: Number,
-    default: 0
-  },
-  comments: {
-    type: [String],
-  }
+  reviews: [
+    {
+    type: mongoose.Schema.Types.ObjectId, ref: "review"
+    }
+  ]
 },
   { timestamps: true }
 )

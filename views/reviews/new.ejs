@@ -1,0 +1,44 @@
+<%- contentFor('body') %>
+
+<div class="wrapper">
+  <div class="form-container">
+    <h1>Add a new review</h1>
+
+    <form
+      class="login-form"
+      action="/recipes/<%= recipe._id %>/reviews"
+      method="POST"
+    >
+      <label for="title">Title</label>
+      <input id="title" name="title" type="text" required />
+
+      <label for="review">Review</label>
+      <textarea id="review" name="review" required rows="8"></textarea>
+
+      <label>Rating</label>
+
+      <div class="star-rating">
+        <input type="radio" id="star5" name="rating" value="5" required>
+        <label for="star5" title="5 stars">★</label>
+
+        <input type="radio" id="star4" name="rating" value="4">
+        <label for="star4" title="4 stars">★</label>
+
+        <input type="radio" id="star3" name="rating" value="3">
+        <label for="star3" title="3 stars">★</label>
+
+        <input type="radio" id="star2" name="rating" value="2">
+        <label for="star2" title="2 stars">★</label>
+
+        <input type="radio" id="star1" name="rating" value="1">
+        <label for="star1" title="1 star">★</label>
+      </div>
+
+      <button class="btn" type="submit">Submit review</button>
+
+      <p class="action-link">
+        <a href="/recipes/<%= recipe._id %>">Cancel</a>
+      </p>
+    </form>
+  </div>
+</div>
