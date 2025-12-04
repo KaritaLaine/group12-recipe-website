@@ -30,7 +30,7 @@ Sign up, login, recipes page, single recipe details, post and comment/rate.
 
 [x] - ORM or ODM is used and at least one simple data model is designed and implemented. (1 points)
 
-[ ] - More than 2 data models are designed and implemented. (1 point)
+[x] - More than 2 data models are designed and implemented. (1 point)
 
 [x] - Routers are used and they are separated from controllers. (1 point)
 
@@ -42,6 +42,6 @@ Sign up, login, recipes page, single recipe details, post and comment/rate.
 
 [x] - The source code is modularized and easy to read and maintain. (2 points)
 
-[ ] - Automated tests are implemented. (2 points)
+[x] - Automated tests are implemented. (2 points)
 
 [x] - Use Helmet and ImageKit cloud service (suggestion for something else) (2 points)
