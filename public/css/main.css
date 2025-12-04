@@ -352,7 +352,7 @@ input {
   box-shadow: 0 2px 6px rgba(0,0,0,0.12);
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0rem;
 }
 
 .single-recipe .review-card h3 {
@@ -376,6 +376,38 @@ input {
   display: flex;
   justify-content: center;
   margin: 0 0 0 0;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  color: gold;
 }
 
+/* Ratings */
+
+.star-rating {
+  justify-content: left;
+  display: inline-flex;
+  flex-direction: row-reverse; /* makes hover fill leftwards */
+  gap: 0.25rem;
+}
+
+.star-rating input {
+  display: none; /* hide actual radios */
+}
+
+.star-rating label {
+  font-size: 2rem;
+  color: #90b4ce;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.15s ease;
+}
+
+/* fill stars on hover */
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: gold;
+}
+
+/* fill stars when selected */
+.star-rating input:checked ~ label {
+  color: gold;
+}

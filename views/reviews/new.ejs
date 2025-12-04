@@ -1,29 +1,44 @@
 <%- contentFor('body') %>
 
-  <div>
+<div class="wrapper">
+  <div class="form-container">
     <h1>Add a new review</h1>
 
-    <form action="/recipes/<%= recipe._id %>/reviews" method="POST">
-      <div>
-        <label>Title</label><br />
-        <input name="title" type="text" required style="width:300px;" />
+    <form
+      class="login-form"
+      action="/recipes/<%= recipe._id %>/reviews"
+      method="POST"
+    >
+      <label for="title">Title</label>
+      <input id="title" name="title" type="text" required />
+
+      <label for="review">Review</label>
+      <textarea id="review" name="review" required rows="8"></textarea>
+
+      <label>Rating</label>
+
+      <div class="star-rating">
+        <input type="radio" id="star5" name="rating" value="5" required>
+        <label for="star5" title="5 stars">★</label>
+
+        <input type="radio" id="star4" name="rating" value="4">
+        <label for="star4" title="4 stars">★</label>
+
+        <input type="radio" id="star3" name="rating" value="3">
+        <label for="star3" title="3 stars">★</label>
+
+        <input type="radio" id="star2" name="rating" value="2">
+        <label for="star2" title="2 stars">★</label>
+
+        <input type="radio" id="star1" name="rating" value="1">
+        <label for="star1" title="1 star">★</label>
       </div>
 
-      <div">
-        <label>Review</label><br />
-        <textarea name="review" required style="width:500px; height: 200px;"></textarea>
-  </div>
+      <button class="btn" type="submit">Submit review</button>
 
-  <div>
-  <label>Rating:</label><br />
-    <label><input type="radio" name="rating" value="1" required> 1</label>
-    <label><input type="radio" name="rating" value="2"> 2</label>
-    <label><input type="radio" name="rating" value="3"> 3</label>
-    <label><input type="radio" name="rating" value="4"> 4</label>
-    <label><input type="radio" name="rating" value="5"> 5</label>
+      <p class="action-link">
+        <a href="/recipes/<%= recipe._id %>">Cancel</a>
+      </p>
+    </form>
   </div>
-
-  <button type="submit">Submit review</button>
-  <a href="/recipes/<%= recipe._id %>">Cancel</a>
-  </form>
-  </div>
+</div>
