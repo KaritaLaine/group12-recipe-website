@@ -8,7 +8,7 @@ Sign up, login, recipes page, single recipe details, post and comment/rate.
 
 ## Checklist
 
-[ ] - Website works without errors. (2 points)
+[x] - Website works without errors. (2 points)
 
 [x] - MVC design pattern is used at least to some degree. (2 points)
 
