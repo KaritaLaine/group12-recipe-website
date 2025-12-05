@@ -7,6 +7,7 @@ import expressSession from "express-session"
 import helmet from "helmet"
 import mongoose from "mongoose"
 import passport from "passport"
+import { errorController } from "./controllers/errorController.js"
 import { imageController } from "./controllers/imageController.js"
 import { recipeController } from "./controllers/recipeController.js"
 import { reviewController } from "./controllers/reviewController.js"
@@ -115,6 +116,10 @@ router.get(
   reviewController.newReviewForm
 )
 router.post("/recipes/:id/reviews", isLoggedIn, reviewController.createReview)
+
+// Routes for handling 404 (not found) and 500 (internal server error) errors
+router.use(errorController.pageNotFound)
+router.use(errorController.internalServerError)
 
 app.use("/", router)
 
